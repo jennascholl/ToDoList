@@ -6,28 +6,27 @@ export default function App() {
   const [task, setTask] = useState();
   const [taskItems, setTaskItems] = useState([]);
 
-  // adds a task to the list
+  {/* adds a task to the list */}
   const handleAddTask = () => {
     setTaskItems([...taskItems, task]);
     setTask(null);
   }
 
-  // removes a task from the list
+  {/* removes a task from the list */}
   const completeTask = (index) => {
    let itemsCopy = [...taskItems];
     itemsCopy.splice(index, 1);
     setTaskItems(itemsCopy);
   }
 
-  // outputs all of the visible elements
-  return (
-    // all of the tasks will appear here
+  {/* outputs all of the visible elements */}
+  return (  
     <View style={styles.container}>
       <View style={styles.tasksWrapper}>
-        <Text style={styles.sectionTitle}>Today's Tasks</Text>
+        <Text style={styles.sectionTitle}>My To-Do List:</Text>
         <View style={styles.items}>
           {
-            // iterates through each task and calles completeTask() when one has been touched
+            // iterates through each task and calls completeTask() when one has been touched
             taskItems.map((item, index) => {
               return (
                 <TouchableOpacity key={index} onPress ={() => completeTask(index)}>
@@ -39,12 +38,13 @@ export default function App() {
         </View>
       </View>
 
-      <KeyboardAvoidingView  // everything that needs to move when the keyboard is open - text field and add button
+      {/* everything that needs to move when the keyboard is open - text field and add button */}
+      <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={styles.writeTaskWrapper}
       >
         <TextInput style={styles.input} placeholder={'Write a task'} value={task} onChangeText={text => setTask(text)} />
-        // calls handleAddTask() when button is pressed
+        {/* calls handleAddTask() when button is pressed */}
         <TouchableOpacity onPress={() => handleAddTask()}> 
           <View style={styles.addWrapper}>
             <Text style={styles.addText}>+</Text>
@@ -57,7 +57,7 @@ export default function App() {
   );
 }
 
-// styling and formatting
+{/* styling and formatting */}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
